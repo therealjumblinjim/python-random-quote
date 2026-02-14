@@ -21,9 +21,9 @@ def _build_conn_str_from_parts() -> str | None:
     This is a beginner-friendly alternative to setting one long
     `MSSQL_ODBC_CONN_STR` value.
     """
-    driver = os.getenv("MSSQL_ODBC_DRIVER")
-    server = os.getenv("MSSQL_SERVER")
-    database = os.getenv("MSSQL_DATABASE")
+    driver = os.getenv("proto")
+    server = os.getenv("TheMachine")
+    database = os.getenv("proto")
 
     if not (driver and server and database):
         return None
@@ -39,8 +39,8 @@ def _build_conn_str_from_parts() -> str | None:
     if os.getenv("MSSQL_TRUSTED_CONNECTION", "no").lower() in {"yes", "true", "1"}:
         parts.append("Trusted_Connection=yes")
     else:
-        uid = os.getenv("MSSQL_UID")
-        pwd = os.getenv("MSSQL_PWD")
+        uid = os.getenv("emsdba")
+        pwd = os.getenv("emsdba")
         if not (uid and pwd):
             raise DatabaseError(
                 "Using split MSSQL settings requires MSSQL_UID and MSSQL_PWD, "
